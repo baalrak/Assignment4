@@ -18,9 +18,7 @@ public class Bug1Test
   private int limit;
   private Player player;
   List<DiceValue> cdv;
-  private int winCount;
   private int bet;
-  private int loseCount; 
   private Dice d1;
   private Dice d2;
   private Dice d3;
@@ -31,8 +29,6 @@ public class Bug1Test
   public void setUp () throws Exception
   {
     winnings = 0;
-    winCount = 0;
-    loseCount = 0;
     name = "Fred";
     balance = 100;
     bet = 5;
@@ -66,6 +62,7 @@ public class Bug1Test
   {
     for (int i = 0; i < 3; i++)
     {
+      System.out.println("Test 1 - Single Match");
       System.out.println(String.format("Start Game %d: ", i));
       System.out.println(String.format("%s starts with balance %d, limit %d", 
                                        player.getName(), player.getBalance(), 
@@ -88,13 +85,11 @@ public class Bug1Test
       {
         System.out.printf("%s won %d, balance now %d\n\n",
             player.getName(), winnings, player.getBalance());
-        winCount++; 
       }
       else 
       {
         System.out.printf("%s lost, balance now %d\n\n",
             player.getName(), player.getBalance());
-        loseCount++;
       } 
     } 
   }
@@ -108,6 +103,7 @@ public void testDoubleMatchValues ()
 {
   for (int i = 0; i < 3; i++)
   {
+    System.out.println("Test 2 - Double Match");
     System.out.println(String.format("Start Game %d: ", i));
     System.out.println(String.format("%s starts with balance %d, limit %d", 
                                      player.getName(), player.getBalance(), 
@@ -130,13 +126,11 @@ public void testDoubleMatchValues ()
     {
       System.out.printf("%s won %d, balance now %d\n\n",
           player.getName(), winnings, player.getBalance());
-      winCount++; 
     }
     else 
     {
       System.out.printf("%s lost, balance now %d\n\n",
           player.getName(), player.getBalance());
-      loseCount++;
     } 
   } 
 }
@@ -149,6 +143,7 @@ public void testTripleMatchValues ()
 {
   for (int i = 0; i < 3; i++)
   {
+    System.out.println("Test 3 - Triple Match");
     System.out.println(String.format("Start Game %d: ", i));
     System.out.println(String.format("%s starts with balance %d, limit %d", 
                                      player.getName(), player.getBalance(), 
@@ -170,14 +165,12 @@ public void testTripleMatchValues ()
     if (winnings > 0) 
     {
       System.out.printf("%s won %d, balance now %d\n\n",
-          player.getName(), winnings, player.getBalance());
-      winCount++; 
+          player.getName(), winnings, player.getBalance()); 
     }
     else 
     {
       System.out.printf("%s lost, balance now %d\n\n",
           player.getName(), player.getBalance());
-      loseCount++;
     } 
   } 
 }
@@ -190,6 +183,7 @@ public void testNoMatchValues ()
 {
   for (int i = 0; i < 3; i++)
   {
+    System.out.println("Test 4 - No Match");
     System.out.println(String.format("Start Game %d: ", i));
     System.out.println(String.format("%s starts with balance %d, limit %d", 
                                      player.getName(), player.getBalance(), 
@@ -211,14 +205,12 @@ public void testNoMatchValues ()
     if (winnings > 0) 
     {
       System.out.printf("%s won %d, balance now %d\n\n",
-          player.getName(), winnings, player.getBalance());
-      winCount++; 
+          player.getName(), winnings, player.getBalance()); 
     }
     else 
     {
       System.out.printf("%s lost, balance now %d\n\n",
           player.getName(), player.getBalance());
-      loseCount++;
     } 
   } 
 }
