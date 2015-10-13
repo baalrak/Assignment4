@@ -42,7 +42,7 @@ public class Main {
                 {
                     turn++;                    
                 	DiceValue pick = DiceValue.getRandom();
-                   
+                    System.out.println("Starting Balance: " + player.getBalance ());
                 	System.out.printf("Turn %d: %s bet %d on %s\n",
                 			turn, player.getName(), bet, pick); 
                 	
