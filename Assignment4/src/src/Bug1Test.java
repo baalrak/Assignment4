@@ -64,30 +64,29 @@ public class Bug1Test
     {
       System.out.println("Test 1 - Single Match");
       System.out.println(String.format("Start Game %d: ", i));
-      System.out.println(String.format("%s starts with balance %d, limit %d", 
-                                       player.getName(), player.getBalance(), 
-                                       player.getLimit()));
 
       int turn = 0;
       turn++;                    
       DiceValue pick = DiceValue.CROWN;
       System.out.printf("Turn %d: %s bet %d on %s\n",
-          turn, player.getName(), bet, pick); 
+                         turn, player.getName(), bet, pick); 
       Mockito.when (d1.getValue ()).thenReturn (DiceValue.CROWN);
       Mockito.when (d2.getValue ()).thenReturn (DiceValue.ANCHOR);
       Mockito.when (d3.getValue ()).thenReturn (DiceValue.HEART);
       int winnings = game.playRound(player, pick, bet);
       cdv = game.getDiceValues();
       System.out.printf("Rolled %s, %s, %s\n",
-          cdv.get(0), cdv.get(1), cdv.get(2));
+                        cdv.get(0), cdv.get(1), cdv.get(2));
 
       if (winnings > 0) 
       {
+        assertTrue(winnings == (bet * 1));
         System.out.printf("%s won %d, balance now %d\n\n",
             player.getName(), winnings, player.getBalance());
       }
       else 
       {
+        assertFalse(winnings == (bet * 0));
         System.out.printf("%s lost, balance now %d\n\n",
             player.getName(), player.getBalance());
       } 
@@ -105,10 +104,6 @@ public void testDoubleMatchValues ()
   {
     System.out.println("Test 2 - Double Match");
     System.out.println(String.format("Start Game %d: ", i));
-    System.out.println(String.format("%s starts with balance %d, limit %d", 
-                                     player.getName(), player.getBalance(), 
-                                     player.getLimit()));
-
     int turn = 0;
     turn++;                    
     DiceValue pick = DiceValue.CROWN;
@@ -124,11 +119,13 @@ public void testDoubleMatchValues ()
 
     if (winnings > 0) 
     {
+      assertTrue(winnings == (bet * 2));
       System.out.printf("%s won %d, balance now %d\n\n",
           player.getName(), winnings, player.getBalance());
     }
     else 
     {
+      assertFalse(winnings == (bet * 0));
       System.out.printf("%s lost, balance now %d\n\n",
           player.getName(), player.getBalance());
     } 
@@ -145,9 +142,6 @@ public void testTripleMatchValues ()
   {
     System.out.println("Test 3 - Triple Match");
     System.out.println(String.format("Start Game %d: ", i));
-    System.out.println(String.format("%s starts with balance %d, limit %d", 
-                                     player.getName(), player.getBalance(), 
-                                     player.getLimit()));
 
     int turn = 0;
     turn++;                    
@@ -164,11 +158,13 @@ public void testTripleMatchValues ()
 
     if (winnings > 0) 
     {
+      assertTrue(winnings == (bet * 3));
       System.out.printf("%s won %d, balance now %d\n\n",
           player.getName(), winnings, player.getBalance()); 
     }
     else 
     {
+      assertFalse(winnings == (bet * 0));
       System.out.printf("%s lost, balance now %d\n\n",
           player.getName(), player.getBalance());
     } 
@@ -185,9 +181,6 @@ public void testNoMatchValues ()
   {
     System.out.println("Test 4 - No Match");
     System.out.println(String.format("Start Game %d: ", i));
-    System.out.println(String.format("%s starts with balance %d, limit %d", 
-                                     player.getName(), player.getBalance(), 
-                                     player.getLimit()));
 
     int turn = 0;
     turn++;                    
@@ -204,11 +197,13 @@ public void testNoMatchValues ()
 
     if (winnings > 0) 
     {
+      assertFalse(winnings == (bet * 1));
       System.out.printf("%s won %d, balance now %d\n\n",
           player.getName(), winnings, player.getBalance()); 
     }
     else 
     {
+      assertTrue(winnings == (bet * 0));
       System.out.printf("%s lost, balance now %d\n\n",
           player.getName(), player.getBalance());
     } 
