@@ -26,6 +26,7 @@ public class Bug3Test
   int totalLosses = 0;
   int winCount = 0;
   int loseCount = 0;
+  
   @Before
   public void setUp () throws Exception
   {
@@ -97,7 +98,7 @@ public class Bug3Test
 
   
   @Test
-  public void testHypothesis ()
+  public void testHypothesis1 ()
   {
     for (int i = 0; i < 100; i++)
     {
@@ -153,6 +154,46 @@ public class Bug3Test
     totalWins += winCount;
     totalLosses += loseCount;
     System.out.println(String.format("Overall win rate = %.1f%%", (float)(totalWins * 100) / (totalWins + totalLosses)));
+  }
+
+
+  @Test
+  public void testHypothesis2 ()
+  {
+    int heart = 0;
+    int club = 0;
+    int anchor = 0;
+    int crown = 0;
+    int diamond = 0;
+    int spade = 0;
+    DiceValue dv = null;
+    for (int i = 0; i < 1000; i++){
+      DiceValue a = dv.getRandom();
+      if (a.equals (DiceValue.HEART)){
+        heart++;
+      }
+      if (a.equals (DiceValue.CLUB)){
+        club++;
+      }
+      if (a.equals (DiceValue.ANCHOR)){
+        anchor++;
+      }
+      if (a.equals (DiceValue.CROWN)){
+        crown++;
+      }
+      if (a.equals (DiceValue.DIAMOND)){
+        diamond++;
+      }
+      if (a.equals (DiceValue.SPADE)){
+        spade++;
+      }
+    }
+    System.out.println("Number of Hearts: " + heart);
+    System.out.println("Number of Clubs: " + club);
+    System.out.println("Number of Anchors: " + anchor);
+    System.out.println("Number of Crowns: " + crown);
+    System.out.println("Number of Diamonds: " + diamond);
+    System.out.println("Number of Spades: " + spade);
   }
 }
 
